@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Operator Page</title>
+</head>
+<body>
+<!-- Include _menu.html -->
+<th:block th:include="/_menu"></th:block>
+<h3>Welcome : <span th:utext="${#request.userPrincipal.name}"></span></h3>
+
+<div class="taskList" th:object="${task}">
+    <select class="form-control" id="operatorTask" name="operatorTask">
+        <option value="">Operator tasks (order's code / time)</option>
+        <option th:each="task : ${tasks}"
+                th:value="${task.orderCode}"
+                th:text="${task.orderCode}+' / '+${#temporals.format(task.dateTime, 'yyyy-MM-dd HH:mm:ss')}">
+        </option>
+
+    </select>
+
+</div>
+</body>
+</html>
